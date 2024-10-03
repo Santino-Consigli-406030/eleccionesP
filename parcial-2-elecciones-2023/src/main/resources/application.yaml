@@ -1,0 +1,39 @@
+server:
+  port: 8084
+
+app:
+  name: elecciones-app
+  desc: Your application description here
+  version: 1.0.0
+  url: http://localhost:8084
+  dev-name: Your Name
+  dev-email: your.email@example.com
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        register-health-indicator: true
+        sliding-window-size: 2
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 5
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 5s
+        failure-rate-threshold: 50
+    instances:
+      default:
+        baseConfig: default  # Usando la configuración por defecto

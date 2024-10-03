@@ -1,0 +1,14 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: api-externa-route
+          uri: http://eleccionesApiExterna:8080  #Si esta dockerizado la app propia y no el gateway, se utiliza
+          predicates:                            #host.docker.internal, si no esta dockerizada la app propia localhost
+            - Path=/api-externa/**               #si esta dockerizada app proopia y gateway utilizar nombre definido en el compose
+          filters:
+            - StripPrefix=1

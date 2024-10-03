@@ -1,0 +1,22 @@
+version: '3'
+
+
+services:
+  elecciones-micro:
+    build: ./parcial-2-elecciones-2023-
+    image: elecciones-app
+    ports:
+      - "8084:8084"
+    environment:
+      APP_NAME: elecciones-app
+
+
+  eleccionesApiExterna:
+    image: tupfrcutn/elecciones-2023:1.0.0
+    ports:
+      - "8080:8080"
+
+  api-gateway:
+    image: gateway-app
+    ports:
+      - "8081:8081"
