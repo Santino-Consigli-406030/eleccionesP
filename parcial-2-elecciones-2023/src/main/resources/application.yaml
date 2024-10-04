@@ -36,4 +36,4 @@ resilience4j:
         failure-rate-threshold: 50
     instances:
       default:
-        baseConfig: default  # Usando la configuración por defecto
+        baseConfig: default
