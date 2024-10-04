@@ -32,7 +32,7 @@ public class DistritoService {
           distritos = httpClient.get("http://api-gateway:8081/api-externa/distritos", new ParameterizedTypeReference<List<DistritoRecord>>(){});
        }
        else {
-           distritos = httpClient.get("http://localhost:8080/distritos?distritoNombre={nombre}", new ParameterizedTypeReference<List<DistritoRecord>>(){},nombre);
+           distritos = httpClient.get("http://api-gateway:8081/api-externa/distritos?distritoNombre={nombre}", new ParameterizedTypeReference<List<DistritoRecord>>(){},nombre);
        }
         return getDistritoModels(distritos);
     }

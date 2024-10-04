@@ -26,15 +26,15 @@ public class CargosService {
     private ModelMapper modelMapper;
     public CargosDistritosDTO getCargosListWithDistrito(Long idDistrito) {
 
-        ResponseEntity<List<DistritoRecord>> distritoRecords = httpClient.get("http://eleccionesApiExterna:8080/distritos?distritoId={idDistrito}", new ParameterizedTypeReference<List<DistritoRecord>>() {
+        ResponseEntity<List<DistritoRecord>> distritoRecords = httpClient.get("http://api-gateway:8081/api-externa/distritos?distritoId={idDistrito}", new ParameterizedTypeReference<List<DistritoRecord>>() {
         },idDistrito);
-        DistritoRecord distrito = distritoRecords.getBody().get(0);
+        DistritoRecord distritos = distritoRecords.getBody().get(0);
 
-        ResponseEntity<List<CargoRecord>> cargosById = httpClient.get("http://eleccionesApiExterna:8080/cargos?distritoId={idDistrito}", new ParameterizedTypeReference<List<CargoRecord>>() {
+        ResponseEntity<List<CargoRecord>> cargosById = httpClient.get("http://api-gateway:8081/api-externa/cargos?distritoId={idDistrito}", new ParameterizedTypeReference<List<CargoRecord>>() {
         },idDistrito);
         List<CargoRecord> cargoRecords = cargosById.getBody();
 
-        DistritoModel distritoModel = modelMapper.map(distrito, DistritoModel.class);
+        DistritoModel distritoModel = modelMapper.map(distritos, DistritoModel.class);
         List<CargoModel> cargoModels = new ArrayList<>();
         assert cargoRecords != null;
         for(CargoRecord cargoRecord : cargoRecords)

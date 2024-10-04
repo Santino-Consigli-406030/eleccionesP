@@ -22,11 +22,11 @@ public class SeccionesService {
         ResponseEntity<List<SeccionRecord>> secciones;
         if(seccionId==null)
         {
-            secciones = httpClient.get("http://eleccionesApiExterna:8080/secciones?distritoId={distritoId}", new ParameterizedTypeReference<List<SeccionRecord>>() {
+            secciones = httpClient.get("http://api-gateway:8081/api-externa/secciones?distritoId={distritoId}", new ParameterizedTypeReference<List<SeccionRecord>>() {
             },distritoId);
         }
         else {
-            secciones = httpClient.get("http://eleccionesApiExterna:8080/secciones?distritoId={distritoId}&seccionId={seccionId}", new ParameterizedTypeReference<List<SeccionRecord>>() {
+            secciones = httpClient.get("http://api-gateway:8081/api-externa/secciones?distritoId={distritoId}&seccionId={seccionId}", new ParameterizedTypeReference<List<SeccionRecord>>() {
             },distritoId,seccionId);
         }
         List<SeccionRecord> seccionRecords = secciones.getBody();

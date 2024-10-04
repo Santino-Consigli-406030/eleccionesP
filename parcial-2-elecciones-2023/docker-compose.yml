@@ -17,6 +17,6 @@ services:
       - "8080:8080"
 
   api-gateway:
-    image: gateway-app
+    image: sha256:6bc4940bec31d311b67ee8d5fadfe3d79f8bfae25e4c5306a426d8632ce258e1
     ports:
       - "8081:8081"

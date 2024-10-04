@@ -79,7 +79,7 @@ public class ResultadosService {
         {
             throw new HttpClientErrorException(HttpStatusCode.valueOf(404),"The api extern doesn't have results");
         }
-        response = httpClient.get("http://eleccionesApiExterna:8080/resultados?seccionId={seccionId}&distritoId={distritoId}",
+        response = httpClient.get("http://api-gateway:8081/api-externa/resultados?seccionId={seccionId}&distritoId={distritoId}",
                 new ParameterizedTypeReference<List<ResultadoRecord>>() {
                 }, seccionId, distritoId);
         return response.getBody();
